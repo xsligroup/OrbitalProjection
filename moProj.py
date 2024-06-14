@@ -91,12 +91,16 @@ def prepareMO(dataBin1,dataBin2,typeBin1,typeBin2) :
 
     print("mo2 size",mo2.shape)
 
+    if mo1.shape != mo2.shape:
+      print("MOs should have same size. Please read the README for help.")
+      sys.exit(1)
+
     #np.savetxt("mo2.txt", mo2)
 
     if typeBin1 == typeBin2:
       print("Ref type the same for both bin files, so no MO preparation is needed")
     else:
-      print("Do not know how to convert between the two ref types")
+      print("Do not know how to convert between the two ref types. Please read README.")
 
     return mo1, mo2, overlap
 
