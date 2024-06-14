@@ -72,7 +72,7 @@ def prepareMO(dataBin1,dataBin2,typeBin1,typeBin2) :
 
     print("mo1 size",mo1.shape)
 
-    np.savetxt("mo1.txt ", mo1)
+    #np.savetxt("mo1.txt ", mo1)
 
     # handling of overlap assumes 2c
     overlapAO = bin1["/INTS/OVERLAP"][:]
@@ -83,7 +83,7 @@ def prepareMO(dataBin1,dataBin2,typeBin1,typeBin2) :
 
     print("overlap 2c AO size ",overlap.shape)
 
-    np.savetxt("overlapAO.txt", overlap)
+    #np.savetxt("overlapAO.txt", overlap)
 
     bin2 = h5py.File(dataBin2)
 
@@ -91,7 +91,7 @@ def prepareMO(dataBin1,dataBin2,typeBin1,typeBin2) :
 
     print("mo2 size",mo2.shape)
 
-    np.savetxt("mo2.txt", mo2)
+    #np.savetxt("mo2.txt", mo2)
 
     if typeBin1 == typeBin2:
       print("Ref type the same for both bin files, so no MO preparation is needed")
@@ -125,7 +125,7 @@ def outputMOOverlap(mo1, mo2, overlap) :
         if overlapMO[j,i]*overlapMO[j,i] > 0.10 :
           print(f"MO #{j+1:2d} : {overlapMO[j,i]*overlapMO[j,i]:6.4f}")
         
-    np.savetxt("overlapMO.txt", overlapMO)
+    #np.savetxt("overlapMO.txt", overlapMO)
 
 
 # Written by Shiv Upadhyay
