@@ -9,3 +9,7 @@ Projects one set of orbitals onto another for ChronusQuantum (CQ)
 `python moProj.py binfile1.bin binfile2.bin`
 
 The above assumes that binfile1.bin contains the MOs you will be using as a basis.
+
+`python moProj.py binfile1.bin binfile2.bin 0.05`
+
+The above uses a third optional argument to set the threshold for printing. The default value is 0.1. Only orbitals with contribution greater than this threshold will be printed in the output.
