@@ -12,13 +12,21 @@ import numpy as np
 import h5py
 
 def main() :
-    dataBin1, dataBin2 = sys.argv[1], sys.argv[2]
+
+    if len(sys.argv) == 3:
+      dataBin1, dataBin2 = sys.argv[1], sys.argv[2]
+      threshold = 0.100000
+    elif len(sys.argv) == 4:
+      dataBin1, dataBin2, threshold = sys.argv[1], sys.argv[2], float(sys.argv[3])
+    else:
+      print("Too many or too few arguments")
+      sys.exit(1)
 
     typeBin1, typeBin2 = determineMethod(dataBin1,dataBin2)
 
     mo1, mo2, overlap = prepareMO(dataBin1,dataBin2,typeBin1,typeBin2) 
 
-    outputMOOverlap(mo1, mo2, overlap)
+    outputMOOverlap(mo1, mo2, overlap, threshold)
 
 
 
@@ -105,7 +113,7 @@ def prepareMO(dataBin1,dataBin2,typeBin1,typeBin2) :
     return mo1, mo2, overlap
 
 
-def outputMOOverlap(mo1, mo2, overlap) :
+def outputMOOverlap(mo1, mo2, overlap, threshold) :
     """
     takes in two MOs and overlap and calculate orbital projection
     params:
@@ -123,10 +131,12 @@ def outputMOOverlap(mo1, mo2, overlap) :
 #    for i in range(i_range):
 #      print(i, overlapMOcomp[:,i].conj().T @ overlapMOcomp[:,i])
 
+    print("Printing out orbital contributions > ",threshold)
+
     for i in range(i_range) :
       print("**** Contributions from mo1 to orbital ",i+1," from mo2")
       for j in range(j_range) :
-        if overlapMO[j,i]*overlapMO[j,i] > 0.10 :
+        if overlapMO[j,i]*overlapMO[j,i] > threshold :
           print(f"MO #{j+1:2d} : {overlapMO[j,i]*overlapMO[j,i]:6.4f}")
         
     #np.savetxt("overlapMO.txt", overlapMO)
